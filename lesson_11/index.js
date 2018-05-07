@@ -4,28 +4,29 @@ let operation = "add";
 
 switch (operation) {
 	case "add":
-
-	console.log(a + b);
-	break;
+		console.log(a + b);
+		break;
 
 	case "sub":
-	console.log(a - b);
-	break;
+		console.log(a - b);
+		break;
 
 	case "mult":
-	console.log(a * b);
-	break;
+		console.log(a * b);
+		break;
 
 	case "div":
 	 if (b !== 0) {
-		console.log(a / b);
-		} else {
-			console.log("деление на ноль");}
+			console.log(a / b);
+		} 
+		else {
+			console.log("деление на ноль");
+		}
 		break;
 
 	case "pow":
-	console.log(Math.pow(a, b));
-	break;
+		console.log(Math.pow(a, b));
+		break;
 
 	default:
 	console.log( "Введите корректные данные (add - деление, sub - вычитание, mult - умножение, div - деление, pow - возведение в степень.)" )
