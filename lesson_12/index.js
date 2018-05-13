@@ -11,8 +11,8 @@ console.log(`summa array: ${sum}`);
 console.log(`average: ${average}`);*/
 
 let sumArray = 0;
-let min = 0;
-let max = 0;
+let min = arr1[0];
+let max = arr1[0];
   for (let i = 0; i < arr1.length; i++) {
 	sumArray += arr1[i];
      if (arr1[i] < min) {
@@ -23,10 +23,10 @@ let max = 0;
     }
 }
 let a = sumArray / arr1.length;
-console.log(`sum: ${sumArray}`);
-console.log(`averenge: ${a}`);
-console.log(`min value: ${min}`);
-console.log(`max value: ${max}`);
+console.log(sumArray);
+console.log(a);
+console.log(min);
+console.log(max);
 
 //the second part
 // const obj1 = { from: 1, to: 4, value: [4, 5, 12, 7, 5, 4], ignore: [2] };
