@@ -70,7 +70,7 @@ function revers(rev) {
         arr.push(arguments[i].split("").reverse().join(""));
     }
 	
-    return arr;
+    return arr.reverse();
 }
 //var rev = revers('123, 456, 789, asd');
 //console.log(rev);
