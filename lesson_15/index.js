@@ -23,23 +23,17 @@ function init(arr1, n){
 
 }
 
-//const empl = { className: 'class_my', attributes: { 'data-name': 'Anatoliy' }, content: 'Some Text' };
-
-//init(empl, 5);
-
-document.querySelector('button').addEventListener("click", listen);
-
  function listen() {
-	var element = document.querySelector('ul');
-	if(element){
-		element.parentNode.removeChild(element);
-		//alert('true');
-		return true;
-	}
-	else{
-		//alert('false');
-		return false;
-	}
+ 	document.querySelector('button').addEventListener("click", function(){
+ 		var element = document.querySelector('ul');
+			if(element){
+				element.parentNode.removeChild(element);
+				
+				return true;
+			}
+			else{
+				
+				return false;
+			}
+	});	
 }
- 
-
