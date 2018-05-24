@@ -1,6 +1,6 @@
-let a = 7.5;
-let b = 3;
-let operation = "add";
+let a = -1;
+let b = 0;
+let operation = "div";
 
 switch (operation) {
 	case "add":
@@ -16,12 +16,9 @@ switch (operation) {
 		break;
 
 	case "div":
-	 if (b !== 0) {
+	 
 			console.log(a / b);
-		} 
-		else {
-			console.log("деление на ноль");
-		}
+		
 		break;
 
 	case "pow":
