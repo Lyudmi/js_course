@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lesson_16</title>
+	<style>
+        main {
+            padding-top: 100px;
+            text-align: center; 
+        }
+        #timer {
+            margin-right: 10px;
+            width: 150px;
+            display: inline-block;
+        }
+        button {
+            width: 120px;
+            height: 50px;
+            margin-top: 30px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        ul li {
+            display: inline;
+            margin-right: 4px;
+            padding: 8px;
+        }
+        
+    </style>
+</head>
+<body>
+	<main>
+	    <ul id="array">
+	            <li>[ </li>
+	            <li> ]</li>
+	    </ul>
+
+	    <div id="timer"><span id="timerLabel">0</span><span> seconds</span></div>
+	    <button   onclick= "start()" id="startButton">Start</button>
+	    <button   onclick= "pause()">Pause</button>
+	    <button   onclick= "stop()">Stop</button>
+	    <div>
+	    	<button onclick= "speedX1()" id="speedX1">X1</button>
+	    	<button onclick= "speedX2()" id="speedX2">X2</button>
+	    	<button onclick= "speedX3()" id="speedX3">X3</button>
+	    </div>
+	</main>
+
+	<script type="text/javascript" src="index.js"></script>
+
+</body>
+</html>
