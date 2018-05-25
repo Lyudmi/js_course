@@ -9,7 +9,7 @@ function itsMe(a="Lyudmi"){
 
 }
 
-itsMe('Kolja');
+//itsMe('Kolja');
 
 
 function compare (a , b){
@@ -89,12 +89,12 @@ function fact(n){
 
 
 
-matrixDiff(
+// matrixDiff(
 
-[[4, 3], [7, 5]],
-[[2, 1], [6, 5]]
+// [[4, 3], [7, 5]],
+// [[2, 1], [6, 5]]
 
-);
+// );
 
 function matrixDiff(a,b)
 {
