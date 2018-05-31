@@ -91,31 +91,32 @@ function fact(n){
 
 // matrixDiff(
 
-// [[4, 3], [7, 5]],
-// [[2, 1], [6, 5]]
+// [[2, 3], [4, 5]],
 
-// );
+// [[2, 1], [6, 5]],);
+ matrixDiff([[2, 3], [4, 5]],[[2, 1], [6]]);
 
 function matrixDiff(a,b)
 {
-    var rowsa = a.length, colsa = a[0].length,
-        rowsb = b.length, colsb = b[0].length,
-        t ;
-    if (colsa != rowsb) return false;
+    var rows_a = a.length;
+    var cols_a = a[0].length;
+    var rows_b = b.length;
+    var cols_b = b[0].length;
+    var  sum ;
+    if (cols_a != rows_b) return NaN;
     
-    for (var k = 0; k < colsb; k++)
-     { for (var i = 0; i < rowsa; i++)
-        { var t = 0;
-          for (var j = 0; j < rowsb; j++)
-          {
-
-          	//console.log(b[j][k]);
-          	 t += a[i][j]-b[j][k];
+    for (var k = 0; k < cols_b; k++){ 
+     	for (var i = 0; i < rows_a; i++){ 
+       		sum = 0;
+          for (var j = 0; j < rows_b; j++){
+          	 sum += Math.abs(a[k][i]-b[j][k]);
           	 
           }
          
         }
      }
-     console.log(t);
-    return t;
+     console.log(sum);
+    return sum;
 }
+
+

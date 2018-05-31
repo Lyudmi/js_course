@@ -1,7 +1,8 @@
-    const n = 18;
+    const n = 5;
     let time = 0;
     let array_timer;
     let counter = 0;
+     var flag = true;
     let speed_timer = 1000;
     let array = document.getElementById('array');
      for (i = 1; i <= n; i ++) {
@@ -31,6 +32,7 @@
         if (array_timer) clearInterval(array_timer); 
          time = 0; 
          counter = 0; 
+         flag = true;
         for (let i = 1; i < array.children.length - 1; i++ ) {
           array.children[i].style.backgroundColor = 'white';
           array.children[i].style.color = 'black';
@@ -38,7 +40,7 @@
         document.getElementById('timerLabel').innerHTML = 0;
         document.getElementById("startButton").disabled = false;
     }
-    var flag = true;
+   
     function timer(){
     array_timer = setInterval(
       function () {
@@ -55,7 +57,7 @@
                 }
           }
           else {
-              document.getElementById('count_' + (counter)).style.backgroundColor = 'black';
+              document.getElementById('count_' + (counter)).style.backgroundColor = 'grey';
               document.getElementById('count_' + (counter)).style.color = 'white'; 
               counter --; 
               if(counter == 0){
