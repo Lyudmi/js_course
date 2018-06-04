@@ -106,6 +106,7 @@ function matrixDiff(a,b)
     if (cols_a != rows_b) return NaN;
     
     for (var k = 0; k < cols_b; k++){ 
+    	
      	for (var i = 0; i < rows_a; i++){ 
        		sum = 0;
           for (var j = 0; j < rows_b; j++){
@@ -118,5 +119,6 @@ function matrixDiff(a,b)
      console.log(sum);
     return sum;
 }
+
 
 
