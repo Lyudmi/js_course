@@ -26,19 +26,19 @@ class AlevelStudent extends Human{
 					
 }
 
-const student = new AlevelStudent({
+const studentA = new AlevelStudent({
 		 name: 'Ivan',
 		 age: 19,
      	 marks: [5, 5, 4, 4],
  });
 
-// let human = new Human( { 
-// 	name: 'Donald', 
-// 	age: 15 ,
-// });
+let human = new Human( { 
+	name: 'Lyudmi', 
+	age: 15 ,
+});
 
-// student.sayHello();
-// student.averageMark();
+ human.sayHello();
+ studentA.averageMark();
 
 
 /*--------------new syntax-------------*/
