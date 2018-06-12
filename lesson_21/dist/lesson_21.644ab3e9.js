@@ -172,6 +172,7 @@ var Dom = function () {
         value: function showPreloader() {
             loader.style.display = "block ";
             document.getElementById("btn").style.display = "none";
+            document.getElementById("div").style.display = "none";
         }
     }, {
         key: 'hidePreloader',
@@ -179,6 +180,7 @@ var Dom = function () {
 
             loader.style.display = 'none';
             document.getElementById("btn").style.display = "block";
+            document.getElementById("div").style.display = "block";
         }
     }, {
         key: 'setCoordinates',
@@ -227,7 +229,7 @@ btn.addEventListener('click', function () {
         }).catch(function (reject) {
             console.log('Error:', reject);
         });
-    }, 200);
+    }, 400);
 });
 },{"./location_api":8,"./dom":7}],15:[function(require,module,exports) {
 var global = arguments[3];

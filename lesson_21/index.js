@@ -14,5 +14,5 @@ btn.addEventListener('click', () => {
                 .catch(reject => {
                     console.log('Error:', reject);
 });
-    }, 200);
+    }, 400);
 })

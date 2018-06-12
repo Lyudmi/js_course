@@ -8,12 +8,15 @@ export default class Dom {
     showPreloader () {
         loader.style.display = "block ";
         document.getElementById("btn").style.display = "none";
+        document.getElementById("div").style.display = "none";
     }
 
     hidePreloader () {
         
         loader.style.display = 'none';
         document.getElementById("btn").style.display = "block";
+        document.getElementById("div").style.display = "block";
+        
 }
 
 
