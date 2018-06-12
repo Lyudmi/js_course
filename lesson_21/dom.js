@@ -1,22 +1,21 @@
 export default class Dom {
-constructor(){
-    this.div = document.createElement('div');
-    this.preload = document.createElement('div');
-    this.preload.className = "preloader";
-    this.preload.innerHTML = '<div class="b-ico-preloader"></div><div class="spinner"></div>';
+    constructor() {
+        let loader = document.getElementById('loader');
+        let btn = document.getElementById('btn');
+        this.div = document.getElementById('div');
+    }
 
-    document.body.appendChild(preload);
-}
-    showPreloader() {  
-        setTimeout(() => {
-            this.preload.className += ' fade';
-            
-}, 200);
+    showPreloader () {
+        loader.style.display = "block ";
+        document.getElementById("btn").style.display = "none";
+    }
+
+    hidePreloader () {
         
-    };
+        loader.style.display = 'none';
+        document.getElementById("btn").style.display = "block";
+}
 
-    hidePreloader() {     
-    };
 
     setCoordinates(parametr) {
              this.lng = parametr.longitude; 
@@ -27,7 +26,7 @@ constructor(){
              
              this.div.innerHTML = "<div><span>Longitude: " + this.lng + ",</span><span> Latitude: " + this.lat  + "</span></div>";
              
-             document.body.appendChild(this.div);
+             //document.body.appendChild(this.div);
     };
         
 }

@@ -10,6 +10,7 @@ btn.addEventListener('click', () => {
         my_Api.getMyIp()
                 .then(resolve => my_Api.getMyLocation(resolve.ip))
                 .then(resolve => dom.setCoordinates(resolve))
+                .then(resolved => dom.hidePreloader())
                 .catch(reject => {
                     console.log('Error:', reject);
 });

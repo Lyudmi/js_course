@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({11:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -147,7 +147,7 @@ var LocationApi = function () {
 
 exports.default = LocationApi;
 ;
-},{}],12:[function(require,module,exports) {
+},{}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -162,26 +162,24 @@ var Dom = function () {
     function Dom() {
         _classCallCheck(this, Dom);
 
-        this.div = document.createElement('div');
-        this.preload = document.createElement('div');
-        this.preload.className = "preloader";
-        this.preload.innerHTML = '<div class="b-ico-preloader"></div><div class="spinner"></div>';
-
-        document.body.appendChild(preload);
+        var loader = document.getElementById('loader');
+        var btn = document.getElementById('btn');
+        this.div = document.getElementById('div');
     }
 
     _createClass(Dom, [{
         key: 'showPreloader',
         value: function showPreloader() {
-            var _this = this;
-
-            setTimeout(function () {
-                _this.preload.className += ' fade';
-            }, 200);
+            loader.style.display = "block ";
+            document.getElementById("btn").style.display = "none";
         }
     }, {
         key: 'hidePreloader',
-        value: function hidePreloader() {}
+        value: function hidePreloader() {
+
+            loader.style.display = 'none';
+            document.getElementById("btn").style.display = "block";
+        }
     }, {
         key: 'setCoordinates',
         value: function setCoordinates(parametr) {
@@ -193,7 +191,7 @@ var Dom = function () {
 
             this.div.innerHTML = "<div><span>Longitude: " + this.lng + ",</span><span> Latitude: " + this.lat + "</span></div>";
 
-            document.body.appendChild(this.div);
+            //document.body.appendChild(this.div);
         }
     }]);
 
@@ -224,12 +222,14 @@ btn.addEventListener('click', function () {
             return my_Api.getMyLocation(resolve.ip);
         }).then(function (resolve) {
             return dom.setCoordinates(resolve);
+        }).then(function (resolved) {
+            return dom.hidePreloader();
         }).catch(function (reject) {
             console.log('Error:', reject);
         });
     }, 200);
 });
-},{"./location_api":11,"./dom":12}],18:[function(require,module,exports) {
+},{"./location_api":8,"./dom":7}],15:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -258,7 +258,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51682' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49522' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -399,5 +399,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[18,6], null)
+},{}]},{},[15,6], null)
 //# sourceMappingURL=/lesson_21.644ab3e9.map
