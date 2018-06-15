@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({11:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -147,7 +147,7 @@ var LocationApi = function () {
 
 exports.default = LocationApi;
 ;
-},{}],12:[function(require,module,exports) {
+},{}],9:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -206,8 +206,8 @@ var Dom = function () {
 }();
 
 exports.default = Dom;
-},{}],19:[function(require,module,exports) {
-'use strict';
+},{}],10:[function(require,module,exports) {
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -222,13 +222,17 @@ var WeatherApi = function () {
         _classCallCheck(this, WeatherApi);
 
         this.my_api_key = '6dd89f65a86b21f15123b05abd8a3cc4';
+        this.city = document.getElementById("city");
+        this.country = document.getElementById("country");
+        this.clouds = document.getElementById("clouds");
+        this.temp = document.getElementById("temp");
     }
 
     _createClass(WeatherApi, [{
-        key: 'getOpenWeather',
+        key: "getOpenWeather",
         value: function getOpenWeather(city) {
             // console.log(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.my_api_key}`);
-            return fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + this.my_api_key).then(function (resolve) {
+            return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + this.my_api_key).then(function (resolve) {
                 if (resolve.status === 200) {
                     return resolve.json();
                 } else {
@@ -237,20 +241,17 @@ var WeatherApi = function () {
             });
         }
     }, {
-        key: 'setOpenWeather',
+        key: "setOpenWeather",
         value: function setOpenWeather(data) {
-            console.log(data);
-            // this.kTemp = data.main.temp;
-            // console.log(this.kTemp);
-            // this.country = data.sys.country;
-            // this.city = data.name;
-            // this.weatherDescr = data.weather[0].description;
-            // this.windSpeed = data.wind.speed;
-            // this.swapTemp = true;
+            //console.log(data);
+            this.kTemp = data.main.temp;
+            //console.log(this.kTemp);
+            this.city.innerHTML = data.name;
+            this.country.innerHTML = data.sys.country;
+            this.clouds.innerHTML = data.weather[0].description;
+            this.temp.innerHTML = (this.kTemp - 273.15).toFixed(0);
 
-            // this.tempC = (this.kTemp-273).toFixed(1);
-
-            // console.log(this.tempC);
+            //console.log(this.tempC);
         }
     }]);
 
@@ -278,8 +279,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var my_Api = new _location_api2.default();
 var dom = new _dom2.default();
 var weather = new _weather2.default();
-weather.setOpenWeather();
-
+var Weatherbutton = document.getElementById("weatherApi");
 btn.addEventListener('click', function () {
 
     setTimeout(function () {
@@ -302,7 +302,37 @@ btn.addEventListener('click', function () {
         });
     }, 400);
 });
-},{"./location_api":11,"./dom":12,"./weather":19}],22:[function(require,module,exports) {
+
+Weatherbutton.addEventListener("click", function () {
+    dom.showPreloader();
+    var value = document.getElementById("your_city");
+    if (value.value == "") {
+        my_Api.getMyIp().then(function (resolve) {
+            return my_Api.getMyLocation(resolve.ip);
+        }).then(function (resolve) {
+            dom.setCoordinates(resolve);
+            //console.log(resolve.city);
+            // console.log(weather.getOpenWeather(resolve.city));
+            return weather.getOpenWeather(resolve.city);
+        }).then(function (resolve) {
+            //console.log(resolve);
+            weather.setOpenWeather(resolve);
+            dom.hidePreloader();
+        }).catch(function (error) {
+            return console.log(error);
+        });
+    } else {
+
+        weather.getOpenWeather(value.value).then(function (res) {
+            return weather.setOpenWeather(res);
+        }).then(function (res) {
+            return dom.hidePreloader();
+        }).catch(function (error) {
+            return console.log(error);
+        });
+    }
+});
+},{"./location_api":8,"./dom":9,"./weather":10}],23:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -331,7 +361,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64602' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50482' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -472,5 +502,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[22,6], null)
+},{}]},{},[23,6], null)
 //# sourceMappingURL=/lesson_22.5e2f4ce1.map

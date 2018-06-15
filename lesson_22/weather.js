@@ -1,6 +1,11 @@
 export default class WeatherApi {
     constructor () {
         this.my_api_key = '6dd89f65a86b21f15123b05abd8a3cc4';
+        this.city = document.getElementById("city");
+        this.country = document.getElementById("country");
+		this.clouds = document.getElementById("clouds");
+        this.temp = document.getElementById("temp");
+		
     }
     
     getOpenWeather(city) {
@@ -16,18 +21,15 @@ export default class WeatherApi {
     }
 
     setOpenWeather(data) {
-        console.log(data);
-        // this.kTemp = data.main.temp;
-        // console.log(this.kTemp);
-        // this.country = data.sys.country;
-        // this.city = data.name;
-        // this.weatherDescr = data.weather[0].description;
-        // this.windSpeed = data.wind.speed;
-        // this.swapTemp = true;
-
-        // this.tempC = (this.kTemp-273).toFixed(1);
+        //console.log(data);
+        this.kTemp = data.main.temp;
+        //console.log(this.kTemp);
+        this.city.innerHTML = data.name;
+        this.country.innerHTML = data.sys.country;
+        this.clouds.innerHTML = data.weather[0].description;
+        this.temp.innerHTML = (this.kTemp-273.15).toFixed(0);
        
-        // console.log(this.tempC);
+        //console.log(this.tempC);
         
     }
 }

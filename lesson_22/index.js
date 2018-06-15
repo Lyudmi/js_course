@@ -6,8 +6,7 @@ import WeatherApi from './weather';
 const my_Api = new LocationApi();
 const dom = new Dom();
 const weather = new WeatherApi();
-weather.setOpenWeather();
-
+const Weatherbutton = document.getElementById("weatherApi");
 btn.addEventListener('click', () => {
     
     setTimeout(() => {
@@ -32,3 +31,33 @@ btn.addEventListener('click', () => {
     }, 400);
 })
 
+Weatherbutton.addEventListener("click", () => {
+    dom.showPreloader();
+    let value = document.getElementById("your_city");
+    if(value.value == "") {
+        my_Api.getMyIp()
+        .then(resolve => my_Api.getMyLocation(resolve.ip))
+                .then(resolve => {
+                    dom.setCoordinates(resolve);
+                    //console.log(resolve.city);
+                    // console.log(weather.getOpenWeather(resolve.city));
+                    return weather.getOpenWeather(resolve.city);
+                })
+                .then(resolve => {
+                    //console.log(resolve);
+                    weather.setOpenWeather(resolve);
+                    dom.hidePreloader();
+})
+
+                .catch(error => console.log(error));
+        
+    } 
+    else { 
+       
+        weather.getOpenWeather(value.value)
+        .then(res => weather.setOpenWeather(res))
+        .then(res => dom.hidePreloader())
+
+        .catch(error => console.log(error));
+    }
+});
