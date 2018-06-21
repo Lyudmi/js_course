@@ -20,30 +20,61 @@
 //   });
 // });
 
+const checkAuth = () => {
+  return new Promise(function(resolve, reject)
+    {
+      setTimeout(() => {
+        resolve( {isAuth: true} );
+      }, 2000);
+    }
+    
+};
+
+const getUser = (authInfo) => {
+  return new Promise(function(resolve, reject)
+    {
+      if (!authInfo.isAuth) {
+          resolve(null);
+          return;
+      }
+      setTimeout(() => {
+          reject( {name: 'Max'} );
+      }, 2000);
+    }
+});
+
+checkAuth()
+.then((res) =>{
+  return getUser(res);
+})
+.then((res) =>{
+  console.log(res);
+});
+
+
 
 
 /*first version*/
-let isAuth = true;
- new Promise(function(resolve, reject) {
+// let isAuth = true;
+//  new Promise(function(resolve, reject) {
+// if (!isAuth) {
+//     setTimeout(() => reject (isAuth), 2000);
+//   }
 
-if (!isAuth) {
-    setTimeout(() => reject (isAuth), 2000);
-  }
+//   setTimeout(() => resolve(isAuth), 2000);
 
-  setTimeout(() => resolve(isAuth), 2000);
-
-}).then((result) => {
-  name = "Max";
-  return name;
+// }).then((result) => {
+//   name = "Max";
+//   return name;
   
 
-}).then((name) => {
+// }).then((name) => {
  
-  console.log(name);
+//   console.log(name);
 
-}).catch((isAuth) => {
-  console.log('null');
-});
+// }).catch((isAuth) => {
+//   console.log('null');
+// });
 
 
 

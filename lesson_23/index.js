@@ -1,111 +1,52 @@
-let add_button = document.getElementById('add_button');
+const localStorage_todo = JSON.parse(localStorage.getItem('localStorage_todo')) || [];
+const add_button = document.getElementById('button');
 add_button.addEventListener('click', addTask);
-displayTask();
-
-
-//add  element with the task  when clicking on button
+const p= document.createElement('p');
 
 function addTask() {
-    let value_task = document.getElementById('value_task').value;
-
-    if(value_task){
-        let todos = getlocalStorage();
-        let todo= {
-            name: value_task,
-            classli: 'try'
-    };
-
-    document.getElementById('value_task').value = '';
-    document.getElementById('value_task').placeholder="add new task";
-    todos.push(todo);
-    localStorage.setItem('todo', JSON.stringify(todos));
-        
-    displayTask();
-    return false;
+  this.input = document.getElementById('todo-input');
+  if (this.input.value.replace(/\s/g,"") == "" ){
+      p.className = "notice";
+      p.innerHTML = "<strong>this field is empty!</strong> you must correct  data";
+      document.getElementById('invalid').appendChild(p);
+    }else{
+        p.innerHTML="";
+        localStorage_todo.push({
+        value: this.input.value,
+    })
     }
-    
+  localStorage.setItem('localStorage_todo', JSON.stringify(localStorage_todo));
+  listTask();
+  this.input.value = "";
+  this.input.placeholder = "add task";
 }
 
-
-//create element with the task  when clicking on button
-function displayTask() {
-    let todos = getlocalStorage();
-    console.log(todos.length);
-
-    let create_ul = '<ul>';
-    for(let i=0; i < todos.length; i++) {
-
-        console.log('bla'+ todos[i].name)
-        create_ul += '<li id="' + 'checkeds'+ i  + '"  class="' + todos[i].classli  + '">' 
-        + todos[i].name + '<button class="checked" id="' + 'c'+ i  + '">\u2713</button>' 
-        + '<button class="remove" id="' + i  + '">x</button></li>';
-    };
-    create_ul += '</ul>';
-
-    document.getElementById('todos').innerHTML = create_ul;
-
-    var buttons = document.getElementsByClassName('remove');
-    var checked = document.getElementsByClassName('checked');
-
-    for (var i=0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', remove);
-    };
-
-    for (var j=0; j < checked.length; j++) {
-        checked[j].addEventListener('click', checkedTask);
-    };
-
-    return false;
-}
-
-// Create "getlocalStorag" function when 
-function getlocalStorage() {
-    let value_task = document.getElementById('value_task').value;
-    let todo= {
-        name: value_task,
-        classli: 'default'
-    };
-    var todos_str = localStorage.getItem('todo');
-    if (todos_str != null) {
-        todos = JSON.parse(todos_str); 
+function listTask() {
+  this.list = "";
+  for (let i = 0; i < localStorage_todo.length; i++) {
+      this.list += "<li>";
+      this.list += "<span class="+ (localStorage_todo[i].done ? "done" : "free") +">";
+      this.list += localStorage_todo[i].value;
+      this.list += "</span>";
+      this.list += "<button  class='check_task' onclick='ifDone("+ i +")'>"
+      + (localStorage_todo[i].task_done? "\u2713" : "+") +"</button> ";
+      this.list += "<button class='delete_task' onclick='deleteTask("+ i +")'>delete</button></li>";  
     }
-    console.log(todos);
-    return todos;
+  document.querySelector("#list-items").innerHTML = list;
 }
 
-// Create "remove" function when 
-function remove() {
-    var id = this.getAttribute('id');
-    var todos = getlocalStorage();
-    todos.splice(id, 1);
-    localStorage.setItem('todo', JSON.stringify(todos));
-
-    displayTask();
-    return false;
+function deleteTask(i) {
+    console.log(i);
+    localStorage_todo.splice(i, 1);
+    localStorage.setItem('localStorage_todo', JSON.stringify(localStorage_todo))
+    listTask();
 }
 
-
-// Add  "checked"  when clicking on a li item
-function checkedTask() {
-   
-    let idchecked = this.getAttribute('id');
-    let value =document.getElementById(idchecked).previousSibling.textContent;
-    console.log('this'+ idchecked);
-    console.log(document.getElementById(idchecked).previousSibling.textContent);
-    let li = document.getElementById(idchecked).parentNode ;
-   
-    let todo= {
-        name: value,
-        classli: "chec_li"
-    };
-    li.className = todo.classli;
-    console.log(li);
-    var todos = getlocalStorage();
-    
-    todos.splice(todos.indexOf(todo), 0, todo);
-    //todos.splice(-1, 0, todo );
-    localStorage.setItem('todo', JSON.stringify(todos));
-
-    return false;
+function ifDone(i) {
+    localStorage_todo[i].done = !localStorage_todo[i].done;
+    localStorage_todo[i].task_done = !localStorage_todo[i].task_done;
+    localStorage.setItem('localStorage_todo', JSON.stringify(localStorage_todo));
+    listTask();
 }
 
+listTask();

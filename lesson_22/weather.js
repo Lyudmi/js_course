@@ -5,10 +5,21 @@ export default class WeatherApi {
         this.country = document.getElementById("country");
 		this.clouds = document.getElementById("clouds");
         this.temp = document.getElementById("temp");
+        this.cache = {};
 		
     }
     
     getOpenWeather(city) {
+        if(this.cache[city]){
+            if(this.cache[city] && Data.now() - this.cache[city].timestamp< 1000 * 60 * 10){
+                return Proomise.resolve(this.cache[city].data);
+    
+            }else {
+                this.cache[city] = null;
+            }
+
+        }
+       
        // console.log(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.my_api_key}`);
         return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.my_api_key}`)
             .then(resolve => {
@@ -17,6 +28,16 @@ export default class WeatherApi {
                 } else {
                     throw new Error('error');
                 }
+            })
+            .then((data) => {
+                
+                localStorage.setItem('cache', JSON.stringify({
+                //this.cache[city] = {
+                    timestamp: Data.now(),
+                    data,
+                }));
+                console.log(this.cache);
+                return data;
             })
     }
 

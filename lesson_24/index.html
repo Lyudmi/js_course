@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lesson 24</title>
+    <style> 
+        .error { border-color: red; } 
+        
+#email:focus {
+  background: #FA6;
+  outline: none;  
+}
+
+    </style>
+</head>
+<body>
+    <label>E-mail</label>
+    <input type="email" value="" placeholder="add email" id="email" name="email">
+    <div id="notice"></div>
+    <hr>
+    <label>Phone</label>
+    <input type="text" value="" placeholder="add phone" id="phone" name="phone">
+    <div id="notice_phone"></div>
+    <hr>
+    
+    <textarea id="content" cols="30" rows="5"></textarea>
+    <button id="search">Найти email</button>
+    <ol id="ol"></ol>
+    <script src="index.js"> </script>
+    
+
+</body>
+</html>
