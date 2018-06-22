@@ -38,5 +38,6 @@ export default class UIController {
             })
             .catch(reject => console.log('error ip: ', reject));
 };
+//getMay();
 
 }
