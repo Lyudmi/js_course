@@ -86,15 +86,19 @@ let search = document.getElementById('search');
     this.reg = /\b([A-я0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,6}\.)?[a-z]{2,6}\b/igm;
     this.content = document.getElementById('content').value;
     this.email = this.content.match(this.reg);
-
+    this.result = this.content.match(this.reg);
     console.log(this.email.length);
     if(this.email) {
         this.ol = document.getElementById('ol');
+        
+
         for(let i = 0; i < this.email.length; i++ ){
-            let li = document.createElement('li');
-                li.id = i;
-                li.innerHTML = this.email[i];
-                this.ol.appendChild(li);
+            
+                this.li = document.createElement('li');
+                this.li.id = i;
+                this.li.innerHTML = this.email[i];
+            
+            this.ol.appendChild(this.li);
         }
     }
     
