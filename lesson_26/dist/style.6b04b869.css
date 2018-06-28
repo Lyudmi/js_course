@@ -1,0 +1,15 @@
+body{
+    box-sizing: border-box;
+}
+#root, .recepi {
+	padding: 15px; 
+	margin: 0 auto;
+    display: inherit;
+    text-align: center;
+    vertical-align: middle;
+   
+    width: 500px;
+}
+li{
+    text-align: left;
+}
