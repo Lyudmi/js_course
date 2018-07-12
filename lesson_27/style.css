@@ -1,0 +1,33 @@
+* {
+  margin: 5px;
+  font-size: 15px;
+  font-family: Arial;
+}
+#input {
+  width: 300px;
+  display: block;
+}
+.texareasearch{
+  width: 450px;
+  height: 450px;
+  border: 1px solid gray;
+  display: inline-block;
+}
+.textarea {
+  width: 400px;
+  height:200px;
+  vertical-align: top;
+  padding: 5px;
+}
+.output_content {
+  width: 450px;
+  height: 450px;
+  border: 1px solid gray;
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px;
+}
+span {
+  background: yellow;
+  margin: 0;
+}
